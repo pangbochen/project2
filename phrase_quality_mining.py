@@ -80,7 +80,7 @@ def wordIDFMining(frequentPatterns):
 
     return IDF_words
 
-def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.1):
+def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.1, outputName=''):
     '''
     :param corpus:              corpus of text
     :param frequentPatterns:    frequency
@@ -157,6 +157,15 @@ def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.1)
     quality_threshold = findKthLargest(quality_phrases.values(), int(quality_percent*len_phrases))
 
     #
+
+    #write qualityfile
+    if True:
+        if len(outputName)>0:
+            qualityFile = open(outputName, 'w', encoding='utf-8')
+            for (key, value) in quality_phrases.items():
+                qualityFile.write(key + "," + str(value) + '\n')
+
+            qualityFile.close()
 
     return (quality_phrases, quality_threshold)
 

@@ -117,6 +117,12 @@ class phraseConstructor:
             ret[i] = (tmp_str, tmp_sig)
         return ret
 
+    def getText(self):
+        ret = ['' for _ in range(len(self.H))]
+        for i in range(len(self.H)):
+            tmp_str = "-".join(self.corpus[self.H[i].left : self.H[i].right+1])
+            ret[i] = tmp_str
+        return " ".join(ret)
 
 #as
 

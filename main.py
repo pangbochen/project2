@@ -9,9 +9,12 @@ if __name__ == "__main__":
     #min
     max_phrase_length = 4
     threshold = 5
+    division_of_phrase_quality = 0.1
+
     rawTextName = 'data/abstract_1000_2015.txt'
     frequentOutputFileName = 'result/abstract_1000_2015_frequent_pattern.csv'
     qualityOutputFileName = 'result/abstract_1000_2015_phrase_quality.csv'
+    segmentedFileName = 'result/abstract_1000_2015_segmented.txt'
 
     rawFile = open(rawTextName, 'r',encoding='utf-8')
     corpus = []
@@ -48,6 +51,7 @@ if __name__ == "__main__":
         if len(tmpChars) > 0:
             corpus.append(''.join(tmpChars))
             tmpChars.clear()
+    rawFile.close()
     # end of create corpus of the
     print("create corpus from file " + rawTextName)
     print("the corpus size is " + str(len(corpus)))
@@ -64,13 +68,29 @@ if __name__ == "__main__":
 
     # TODO phrase quality
 
-    (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns)
+    (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns, division_of_phrase_quality, qualityOutputFileName)
     print("create phrase quality file : " + qualityOutputFileName)
     print("size of phrase quality file is " + str(len(phraseQuality)))
 
-    print(phraseQualityThreshold)
+    print("threshold of phrase quality is "+str(phraseQualityThreshold))
 
     # # TODO the connection of quality and construction
+    rawFile = open(rawTextName, 'r', encoding='utf-8')
+    segmentedFile = open(segmentedFileName, 'w', encoding='utf-8')
+    iii = 0
+    for line in rawFile:
+        iii+=1
+        if iii>12:
+            break
+        line_corpus = line.split()
+        constructor = phraseConstructor(phraseQuality, line_corpus, phraseQualityThreshold)
+        constructor.construct_phrases()
+
+        segmented_line = constructor.getText()
+
+        print(segmented_line)
+        print(line_corpus)
+
     # # phrase construction
     # constructor = phraseConstructor(phraseQuality, corpus, threshold)
     # constructor.construct_phrases()

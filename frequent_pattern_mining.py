@@ -21,7 +21,7 @@ def frequentPatternMining(corpus, oputfile, threshold, max_phrase_length = 6):
         else:
             patterns[corpus[i]] = [i]
 
-    patternFile = open(oputfile, 'w')
+    patternFile = open(oputfile, 'w', encoding='utf-8')
 
     len_pattern = 1
 
