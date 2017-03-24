@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import codecs
 
-def frequentPatternMining(corpus, oputfile, threshold):
+def frequentPatternMining(corpus, oputfile, threshold, max_phrase_length = 6):
     '''
     :param corpus:      the corpus of the text
     :param oputfile:    out file name of the frequent patterns
     :param threshold:   min frequent
     :return:            frequent patterns, frequency dic f of frequent patterns
     '''
-    max_length_of_phrase = 6
+    max_length_of_phrase = max_phrase_length
 
     frequentPatterns = {}      # 'key' : frequency
     patterns = {}

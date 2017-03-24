@@ -7,6 +7,7 @@ from phrase_construction import *
 if __name__ == "__main__":
 
     #min
+    max_phrase_length = 4
     threshold = 5
     rawTextName = 'data/abstract_1000_2015.txt'
     frequentOutputFileName = 'result/abstract_1000_2015_frequent_pattern.csv'
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     print("the corpus size is " + str(len(corpus)))
     #get frequent patterns imformation
 
-    frequentPatterns  = frequentPatternMining(corpus, frequentOutputFileName, threshold)
+    frequentPatterns  = frequentPatternMining(corpus, frequentOutputFileName, threshold, max_phrase_length)
 
 
     print("the threshold is " + str(threshold))
@@ -63,11 +64,11 @@ if __name__ == "__main__":
 
     # TODO phrase quality
 
-    (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns)
-    print("create phrase quality file : " + qualityOutputFileName)
-    print("size of phrase quality file is " + str(len(phraseQuality)))
-
-    print(phraseQualityThreshold)
+    # (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns)
+    # print("create phrase quality file : " + qualityOutputFileName)
+    # print("size of phrase quality file is " + str(len(phraseQuality)))
+    #
+    # print(phraseQualityThreshold)
 
     # # TODO the connection of quality and construction
     # # phrase construction

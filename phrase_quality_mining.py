@@ -77,7 +77,7 @@ def wordIDFMining(frequentPatterns):
 
     return IDF_words
 
-def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.5):
+def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.1):
     '''
     :param corpus:              corpus of text
     :param frequentPatterns:    frequency
@@ -159,14 +159,15 @@ def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.5)
 
 #def main function sd
 if __name__ == '__main__':
-    len_corpus = 1954
-    frequentPatternFileName = 'result/test_frequent_pattern.csv'
+    len_corpus = 321032
+    frequentPatternFileName = 'result/abstract_1000_2015_frequent_pattern.csv'
     patternFile = open(frequentPatternFileName, 'r')
     f = {}
     for line in patternFile:
         units = line.split(',')
-        f[units[0]] = float(units[1])
+        f[units[0]] = int(units[1])
+    len_frequent_patterns = len(f)
     PKL = phrasePKLMining(len_corpus, f)
     IDF = wordIDFMining(f)
-    QUALITY = phraseQualityMining(len_corpus,f)
+    (QUALITY, quality_threshold) = phraseQualityMining(len_corpus,f)
     print(QUALITY)
