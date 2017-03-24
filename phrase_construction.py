@@ -124,6 +124,14 @@ class phraseConstructor:
             ret[i] = tmp_str
         return " ".join(ret)
 
+    def setNewCorpus(self, text_corpus):
+        self.corpus = text_corpus
+
+        self.H = [constructNode(int(i), int(i), int(self.f[text_corpus[i]] if text_corpus[i] in self.f else 0)) for i in
+                  range(len(text_corpus))]
+
+
+        self.createPairSig(self.f, self.H, text_corpus)
 #as
 
 if __name__ == "__main__":

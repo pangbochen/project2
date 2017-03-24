@@ -9,7 +9,7 @@ if __name__ == "__main__":
     #min
     max_phrase_length = 4
     threshold = 5
-    division_of_phrase_quality = 0.1
+    division_of_phrase_quality = 0.4
 
     rawTextName = 'data/abstract_1000_2015.txt'
     frequentOutputFileName = 'result/abstract_1000_2015_frequent_pattern.csv'
@@ -77,31 +77,20 @@ if __name__ == "__main__":
     # # TODO the connection of quality and construction
     rawFile = open(rawTextName, 'r', encoding='utf-8')
     segmentedFile = open(segmentedFileName, 'w', encoding='utf-8')
-    iii = 0
+
     for line in rawFile:
-        iii+=1
-        if iii>12:
-            break
+
         line_corpus = line.split()
         constructor = phraseConstructor(phraseQuality, line_corpus, phraseQualityThreshold)
         constructor.construct_phrases()
 
         segmented_line = constructor.getText()
 
-        print(segmented_line)
-        print(line_corpus)
 
-    # # phrase construction
-    # constructor = phraseConstructor(phraseQuality, corpus, threshold)
-    # constructor.construct_phrases()
-    # constructor.PrintH()
-    #
-    # phrases = constructor.getPhrase()
-    # print(phrases)
-    #
-    # # TODO input of LDA
-    # #store phrases as input of LDA model
-    #
-    # # TODO test of each part with raw text
-    #
-    #
+        segmentedFile.write(segmented_line+'\n')
+    segmentedFile.close()
+
+
+    # Finised input of LDA
+    #store phrases as input of LDA model
+
