@@ -26,10 +26,13 @@ def phrasePKLMining(len_corpus, frequentPatterns):
                 f_ul = frequentPatterns[ ' '.join(units[: i]) ]
                 f_ur = frequentPatterns[ ' '.join(units[i: ]) ]
 
-                min_pml = min(min_pml, log2(len_corpus*f_v/(f_ul*f_ur)))
-
+                #min_pml = min(min_pml, log2(len_corpus*f_v/(f_ul*f_ur)))
+                min_pml = min(min_pml, log2(len_corpus * f_v / (f_ul * f_ur)))
             #update pkl for phrase
-            tmp_pkl = min_pml * frequency / len_corpus
+
+            #tmp_pkl = min_pml * frequency / len_corpus
+
+            tmp_pkl = min_pml * frequency
 
             PKL[pattern] = tmp_pkl
 
@@ -159,6 +162,7 @@ def phraseQualityMining(corpus_length, frequentPatterns, quality_division = 0.1)
 
 #def main function sd
 if __name__ == '__main__':
+    quality_division = 0.2
     len_corpus = 321032
     frequentPatternFileName = 'result/abstract_1000_2015_frequent_pattern.csv'
     patternFile = open(frequentPatternFileName, 'r')
@@ -169,5 +173,6 @@ if __name__ == '__main__':
     len_frequent_patterns = len(f)
     PKL = phrasePKLMining(len_corpus, f)
     IDF = wordIDFMining(f)
-    (QUALITY, quality_threshold) = phraseQualityMining(len_corpus,f)
+    (QUALITY, quality_threshold) = phraseQualityMining(len_corpus,f,quality_division)
     print(QUALITY)
+    print(quality_threshold)

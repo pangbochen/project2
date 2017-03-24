@@ -64,11 +64,11 @@ if __name__ == "__main__":
 
     # TODO phrase quality
 
-    # (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns)
-    # print("create phrase quality file : " + qualityOutputFileName)
-    # print("size of phrase quality file is " + str(len(phraseQuality)))
-    #
-    # print(phraseQualityThreshold)
+    (phraseQuality, phraseQualityThreshold) = phraseQualityMining(len(corpus), frequentPatterns)
+    print("create phrase quality file : " + qualityOutputFileName)
+    print("size of phrase quality file is " + str(len(phraseQuality)))
+
+    print(phraseQualityThreshold)
 
     # # TODO the connection of quality and construction
     # # phrase construction
